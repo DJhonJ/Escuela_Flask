@@ -16,6 +16,10 @@ def dashboard():
 def curso():
     return render_template('curso.html')
 
+@app.route('/curso/add')
+def nuevoCurso():
+    return render_template('curso.html', accion='create')
+
 @app.route('/estudiante')
 def estudiante():
     return render_template('estudiante.html')
@@ -30,6 +34,10 @@ def iniciarSession():
         return redirect(url_for('dashboard'))
     
     return redirect(url_for('index', error='error'))
+
+@app.route('/crearCurso', methods=['POST'])
+def crearCurso():
+    pass
 
 # 0 = no existe. 1 = credenciales malas
 def mensajeError(error):

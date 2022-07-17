@@ -8565,10 +8565,11 @@ body.menu-bottom #collapse-menu {
 
 .btn {
   border-radius: 2px;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   font-size: 15px;
-  padding: 10px 19px;
-  cursor: pointer; }
+  padding: 8px 13px;
+  cursor: pointer; 
+}
   @media only screen and (max-width: 480px) {
     .btn {
       padding: 10px 15px; } }

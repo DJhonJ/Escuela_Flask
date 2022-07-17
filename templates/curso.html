@@ -2,6 +2,65 @@
 
 {% block title %} Cursos {% endblock %}
 {% block content_title %} Cursos {% endblock %}
-{% block content %} 
+{% block content %}
+<div class="row">
+    {% if accion == None or accion != 'create' %}
+    <div class="col-xs-12 col-md-12 text-right mb-3">
+        <a class="btn btn-primary" href="{{ url_for('nuevoCurso') }}">
+            Agregar curso
+        </a>
+    </div>
 
+    <div class="col-xs-12 col-md-12">
+        <div class="card">
+            <div class="card-block table-response">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Columna 1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-xs-12 col-md-12 text-right mb-3">
+        <a class="btn btn-primary" href="{{ url_for('curso') }}">
+            <i class="ti-angle-left"></i>
+            Listado de cursos
+        </a>
+    </div>
+    
+    <div class="col-xs-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Información curso</h5>
+            </div>
+            <div class="card-block">
+                <form action="{{ url_for('crearCurso') }}" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" name="txtNombreCurso" class="form-control" />
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="ti-save"></i>
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}
