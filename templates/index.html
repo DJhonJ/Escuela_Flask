@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="box-login">
-    <form method="post" enctype="multipart/form-data" action="{{ url_for('login') }}">
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('iniciarSession') }}">
         <div class="form-group">
             <label>Usuario</label>
             <input type="text" class="form-control" name="usuario" required />
@@ -12,10 +12,16 @@
             <label>Contraseña</label>
             <input type="password" class="form-control" required />
         </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-block" type="submit">Log in</button>
+
+        {% if request.args.get('error') != None %}
+        <div class="form-group box-credential-error">
+            Credenciales no validas.
         </div>
-        {{ request.args.get('error') if request.args.get('error') != None }}
+        {% endif %}
+
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Iniciar</button>
+        </div>
     </form>
 </div>
 

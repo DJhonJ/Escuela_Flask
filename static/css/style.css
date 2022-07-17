@@ -2,3 +2,10 @@
     width: 350px;
     margin: 90px auto 0;
 }
+
+.box-credential-error {
+    padding: 15px 10px;
+    color: white;
+    border-radius: 10px;
+    background-color: var(--red);
+}
