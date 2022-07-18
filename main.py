@@ -1,46 +1,63 @@
+import imp
 from flask import Flask, render_template, request, redirect, url_for
-import re
+from controller import curso_controller
 
 app = Flask(__name__)
 
 #rutas html
 @app.route('/')
-def index():
+def index_template():
     return render_template('index.html')
 
 @app.route('/dashboard')
-def dashboard():
+def dashboard_template():
     return render_template('dashboard.html')
 
 @app.route('/curso')
-def curso():
-    return render_template('curso.html')
+def curso_template():
+    cursos = curso_controller.consultar_curso()
 
+    return render_template('curso.html', cursos=cursos)
+
+@app.route('/curso/add/<id>')
 @app.route('/curso/add')
-def nuevoCurso():
-    return render_template('curso.html', accion='create')
+def nuevo_curso_template(id=None):
+    curso = None
+    if id != None:
+        cursos = curso_controller.consultar_curso(id)
+
+        if (len(cursos) > 0):
+            curso = cursos[0]
+        else:
+            return redirect(url_for('curso_template'))
+
+    return render_template('curso.html', accion='create', curso=curso)
 
 @app.route('/estudiante')
-def estudiante():
+def estudiante_template():
     return render_template('estudiante.html')
 
 
 #rutas validaciones
 @app.route('/iniciarSession', methods=['POST'])
-def iniciarSession():
+def iniciar_session():
     usuario = request.form.get('usuario')
 
     if usuario == 'jhondoe':
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard_template'))
     
     return redirect(url_for('index', error='error'))
 
 @app.route('/crearCurso', methods=['POST'])
-def crearCurso():
-    pass
+def crear_curso():
+    nombre = request.form.get('txtNombreCurso')
+
+    curso_controller.crear_curso(nombre)
+
+    return redirect(url_for('curso_template'))
 
 # 0 = no existe. 1 = credenciales malas
-def mensajeError(error):
+def mensaje_error(error):
     if (error != None and error != ''):
             mensajes = ['El usuario ingresado no existe.', 'Credenciales ingresada incorrectas.']
             error = int(error)

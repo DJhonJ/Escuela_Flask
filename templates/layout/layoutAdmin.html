@@ -25,6 +25,7 @@
 
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets-template') }}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='./css/style.css')}}" />
   </head>
 
   <body>
@@ -38,7 +39,7 @@
                       <a class="mobile-menu waves-effect waves-light" id="mobile-collapse">
                           <i class="ti-menu"></i>
                       </a>
-                      <a href="index.html">
+                      <a href="{{ url_for('dashboard_template') }}">
                           <img class="img-fluid" src="{{ url_for('static', filename='assets-template') }}/images/logo.png" alt="Theme-Logo" />
                       </a>
                       <a class="mobile-options waves-effect waves-light">
@@ -95,21 +96,21 @@
                           <!-- OPCIONES -->
                           <ul class="pcoded-item pcoded-left-item">
                               <li class="active">
-                                  <a href="{{ url_for('dashboard') }}" class="waves-effect waves-dark">
+                                  <a href="{{ url_for('dashboard_template') }}" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-dashboard"></i><b>D</b></span>
                                       <span class="pcoded-mtext">Dashboard</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>
                               </li>
                               <li>
-                                <a href="{{ url_for('curso') }}" class="waves-effect waves-dark">
+                                <a href="{{ url_for('curso_template') }}" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-agenda"></i><b>D</b></span>
                                     <span class="pcoded-mtext">Cursos</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                               </li>
                               <li>
-                                <a href="{{ url_for('estudiante') }}" class="waves-effect waves-dark">
+                                <a href="{{ url_for('estudiante_template') }}" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                                     <span class="pcoded-mtext">Estudiantes</span>
                                     <span class="pcoded-mcaret"></span>

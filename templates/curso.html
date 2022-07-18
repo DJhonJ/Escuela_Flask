@@ -6,7 +6,7 @@
 <div class="row">
     {% if accion == None or accion != 'create' %}
     <div class="col-xs-12 col-md-12 text-right mb-3">
-        <a class="btn btn-primary" href="{{ url_for('nuevoCurso') }}">
+        <a class="btn btn-primary" href="{{ url_for('nuevo_curso_template') }}">
             Agregar curso
         </a>
     </div>
@@ -17,16 +17,28 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Columna 1</th>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Fecha creación</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                        </tr>
+                    {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.get_id() }}</td>
+                        <td>{{ curso.get_nombre() }}</td>
+                        <td>{{ curso.get_fecha_creacion() }}</td>
+                        <td class="text-right">
+                            <a class="btn-accion" href="curso/add/{{ curso.get_id() }}">
+                                <i class="ti-pencil-alt" data-toggle="tooltip" data-placement="top" data-original-title="editar"></i>
+                            </a>
+                            <a class="btn-accion" data-toggle="tooltip" data-placement="top" data-original-title="desactivar">
+                                <i class="ti-na"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -34,22 +46,22 @@
     </div>
     {% else %}
     <div class="col-xs-12 col-md-12 text-right mb-3">
-        <a class="btn btn-primary" href="{{ url_for('curso') }}">
+        <a class="btn btn-primary" href="{{ url_for('curso_template') }}">
             <i class="ti-angle-left"></i>
             Listado de cursos
         </a>
     </div>
-    
+
     <div class="col-xs-12 col-md-12">
         <div class="card">
             <div class="card-header">
                 <h5>Información curso</h5>
             </div>
             <div class="card-block">
-                <form action="{{ url_for('crearCurso') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url_for('crear_curso') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" name="txtNombreCurso" class="form-control" />
+                        <input type="text" name="txtNombreCurso" class="form-control" value="{{ curso.get_nombre() if curso }}" />
                     </div>
                     <div class="form-group text-right">
                         <button class="btn btn-primary" type="submit">
