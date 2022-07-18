@@ -13,7 +13,10 @@
 
     <div class="col-xs-12 col-md-12">
         <div class="card">
-            <div class="card-block table-response">
+            <div class="card-header">
+                <b>Listado de cursos</b>
+            </div>
+            <div class="card-block table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -30,10 +33,11 @@
                         <td>{{ curso.get_nombre() }}</td>
                         <td>{{ curso.get_fecha_creacion() }}</td>
                         <td class="text-right">
-                            <a class="btn-accion" href="curso/add/{{ curso.get_id() }}">
+                            <a class="btn-accion" href="{{ url_for('nuevo_curso_template', id=curso.get_id()) }}">
                                 <i class="ti-pencil-alt" data-toggle="tooltip" data-placement="top" data-original-title="editar"></i>
                             </a>
-                            <a class="btn-accion" data-toggle="tooltip" data-placement="top" data-original-title="desactivar">
+                            <a class="btn-accion" href="{{ url_for('eliminar_curso', id=curso.get_id()) }}"
+                                data-toggle="tooltip" data-placement="top" data-original-title="desactivar">
                                 <i class="ti-na"></i>
                             </a>
                         </td>
@@ -55,7 +59,7 @@
     <div class="col-xs-12 col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5>Información curso</h5>
+                <b>Información curso</b>
             </div>
             <div class="card-block">
                 <form action="{{ url_for('crear_curso') }}" method="post" enctype="multipart/form-data">

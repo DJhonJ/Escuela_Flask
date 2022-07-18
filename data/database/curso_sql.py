@@ -14,6 +14,7 @@ try:
         cursor.executemany('insert into Curso (Nombre, Estado, FechaCreacion) values (?,?,?)', valores)
 
         conexion.commit() #confirma la transacion
+        cursor.close()
         conexion.close()
 
         return True
@@ -21,20 +22,31 @@ try:
     def update_curso():
         pass
 
-    def delete_curso():
-        pass
+    def delete_curso(id):
+        conexion = Conexion().create_connection()
+        cursor = conexion.cursor()
+
+        cursor.execute(f'delete from Curso where Id = {id}')
+        
+        conexion.commit()
+
+        cursor.close()
+        conexion.close()
+
+        return True
 
     def select_curso(id = None):
         conexion = Conexion().create_connection()
         cursor = conexion.cursor()
 
         if id != None:
-            cursor.execute(f'select Id, Nombre, Estado, FechaCreacion, FechaModificacion from Curso where Id = {id}')
+            cursor.execute(f'select Id, Nombre, Estado, DateTime(FechaCreacion) as FechaCreacion, FechaModificacion from Curso where Id = {id}')
         else:
-            cursor.execute('select Id, Nombre, Estado, FechaCreacion, FechaModificacion from Curso')
+            cursor.execute('select Id, Nombre, Estado, DateTime(FechaCreacion) as FechaCreacion, FechaModificacion from Curso')
         
         cursos = cursor.fetchall()
-        
+
+        cursor.close()
         conexion.close()
 
         return cursos

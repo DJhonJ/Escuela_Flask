@@ -9,7 +9,7 @@ colocar en el CMD los siguentes comandos:
   > set FLASK_ENV=development
   > flask run
 ```
-Explicando lo anterios:
+Explicando lo anterio:
 * **FLASK_APP** indica el directorio principal.
 * **FLASK_ENV** configura el sitio en modo de desarrollo.
 * **flask run** pone en ejecución al sitio.

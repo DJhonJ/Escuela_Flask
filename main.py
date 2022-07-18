@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 #rutas html
 @app.route('/')
+@app.route('/login')
 def index_template():
     return render_template('index.html')
 
@@ -26,7 +27,7 @@ def nuevo_curso_template(id=None):
     if id != None:
         cursos = curso_controller.consultar_curso(id)
 
-        if (len(cursos) > 0):
+        if len(cursos) > 0:
             curso = cursos[0]
         else:
             return redirect(url_for('curso_template'))
@@ -46,7 +47,7 @@ def iniciar_session():
     if usuario == 'jhondoe':
         return redirect(url_for('dashboard_template'))
     
-    return redirect(url_for('index', error='error'))
+    return redirect(url_for('index_template', error='error'))
 
 @app.route('/crearCurso', methods=['POST'])
 def crear_curso():
@@ -56,7 +57,12 @@ def crear_curso():
 
     return redirect(url_for('curso_template'))
 
-# 0 = no existe. 1 = credenciales malas
+@app.route('/curso/delete/<id>')
+def eliminar_curso(id):
+    curso_controller.eliminar_curso(id)
+    return redirect(url_for('curso_template'))
+
+# 0 = no existe. 1 = credenciales malas, NO SE ESTA USANDO
 def mensaje_error(error):
     if (error != None and error != ''):
             mensajes = ['El usuario ingresado no existe.', 'Credenciales ingresada incorrectas.']
