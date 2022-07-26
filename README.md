@@ -2,21 +2,8 @@
 Aplicación básica haciendo uso de Flask.
 
 ### Configuración
-Para ejecutar la aplicación en el servidor local (localhost) se deben configurar las variables de entorno **FLASK_DEV** y **FLASK_APP**, para windows 
-colocar en el CMD los siguentes comandos: 
-```
-  > set FLASK_APP=main
-  > set FLASK_ENV=development
-  > flask run
-```
-Explicando lo anterio:
-* **FLASK_APP** indica el directorio principal.
-* **FLASK_ENV** configura el sitio en modo de desarrollo.
-* **flask run** pone en ejecución al sitio.
-
-&nbsp;
-Para más información y configuración en otras shell visitar https://flask.palletsprojects.com/en/2.1.x/quickstart/#a-minimal-application.
-
+Por defecto la variable de entorno está en modo "development" y el modo debug en True.
+Para instalar los modulos o dependencias de aplicativo, crear la carpeta de entorno virtual en tu local y usar el comando **pip install -r requirements.txt**
 
 ### Recursos de terceros
 * Dashboard (template) : sacado de https://themewagon.com/themes/free-bootstrap4-admin-dashboard-mega-able/.

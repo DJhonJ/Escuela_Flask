@@ -1,8 +1,12 @@
-import imp
 from flask import Flask, render_template, request, redirect, url_for
 from controller import curso_controller
 
 app = Flask(__name__)
+
+app.config.update(
+    ENV = "development",
+    DEBUG = True
+)
 
 #rutas html
 @app.route('/')
@@ -75,4 +79,4 @@ def mensaje_error(error):
 #para identificar que el archivo principal es el main.py
 if __name__ == '__main__':
     #debug=True, cuando haya un cambio el servidor se recarga y ejecuta automaticamente
-    app.run(debug=True, port=5000)
+    app.run()
